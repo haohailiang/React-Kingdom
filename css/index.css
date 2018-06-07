@@ -1,0 +1,11 @@
+@charset "UTF-8";
+
+#container {
+	padding: 50px;
+	background: #eee;
+}
+#container h1 {
+	font-size: 144px;
+	font-family: Arial;
+	color: #0080a8;
+}
