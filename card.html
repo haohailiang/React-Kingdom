@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="renderer" content="webkit">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>React组件-组件组合</title>
+<link rel="stylesheet" href="css/index.css">
+</head>
+<body>
+<div id="container"></div>
+
+<script src="js/react-0.14.9.js"></script>
+<script src="js/react-dom-0.14.9.js"></script>
+<script src="js/browser-5.8.23.min.js"></script>
+
+<script type="text/babel">
+var destination = document.querySelector('#container');
+
+var Square = React.createClass({
+
+	render:function(){
+		var squareStyle = {
+			height          : 150,
+			backgroundColor : "#ff6664"
+		};
+		return (
+			<div style={ squareStyle }></div>
+		)
+	}
+});
+var Label = React.createClass({
+
+	render:function(){
+		var labelStyle = {
+			padding    : 13,
+			margin     : 0,
+			fontWeight : "bold",
+			textAlign  : "center"
+		};
+		return (
+			<p style={ labelStyle }>
+				#FF6663
+			</p>
+		)
+	}
+});
+var Card = React.createClass({
+
+	render:function(){
+		var cardStyle = {
+			width:150,
+			height:200,
+			backgroundColor:"#fff",
+			WebkitFilter:"drop-shadow(0 0 5px #666)",
+			filter:"drop-shadow(0 0 5px #666)"
+		};
+		return (
+			<div style={ cardStyle }>
+				<Square></Square>
+				<Label></Label>
+			</div>
+		)
+	}
+});
+
+ReactDOM.render(
+	<div>
+		<Card></Card>
+	</div>,
+	destination
+);
+</script>
+</body>
+</html>
