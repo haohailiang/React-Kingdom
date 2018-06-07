@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="renderer" content="webkit">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>React组件-组件组合</title>
+<link rel="stylesheet" href="css/index.css">
+</head>
+<body>
+<div id="container"></div>
+
+<script src="js/react-0.14.9.js"></script>
+<script src="js/react-dom-0.14.9.js"></script>
+<script src="js/browser-5.8.23.min.js"></script>
+
+<script type="text/babel">
+var destination = document.querySelector('#container');
+
+var LightingCounter = React.createClass({
+
+	getInitialState:function(){
+		return {
+			strikes:0
+		}
+	},
+	timeTick: function(){
+		this.setState({
+			strikes: this.state.strikes + 100
+		});
+	},
+	componentDidMount:function(){
+		setInterval(this.timeTick, 1000);
+	},
+
+	render:function(){
+		var count = this.state.strikes.toLocaleString();
+		var countStyle = {
+			fontSize:50,
+			color:"#ff6600"
+		};
+
+		return (
+			<h1 style={countStyle}>{ count }</h1>
+		)
+	}
+});
+var LightingCounterDisplay = React.createClass({
+
+	render:function(){
+		var commonStyle = {
+			margin  : 0,
+			padding : 0
+		};
+		var tempStyle = {
+			width           : 250,
+			textAlign       : "center",
+			backgroundColor : "black",
+			padding         : 40,
+			borderRadius    : 10,
+			color           : "#999"
+		};
+		var textStyle = {
+			emphasis:{
+				fontSize:38,
+				...commonStyle
+			},
+			smallEmphasis:{
+				...commonStyle
+			},
+			small:{
+				fontSize:17,
+				opacity:.5,
+				...commonStyle
+			}
+		};
+		return (
+			<div style={ tempStyle }>
+				<LightingCounter></LightingCounter>
+				<h2 style={ textStyle.smallEmphasis }>雷霆打击</h2>
+				<h2 style={ textStyle.emphasis }>我们的地球</h2>
+				<p style={ textStyle.smallEmphasis }>自从你加载这个组件之后</p>
+			</div>
+		)
+	}
+});
+
+ReactDOM.render(
+	<div>
+		<LightingCounterDisplay></LightingCounterDisplay>
+	</div>,
+	destination
+);
+</script>
+</body>
+</html>
