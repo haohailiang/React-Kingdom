@@ -57,14 +57,23 @@ var CounterParent = React.createClass({
 		console.log( newProp );
 
 		// 小于5组件进行更新, 大于5组件不再更新视图
-		return newState.count < 5
+		if(newState.count < 5){
+			return true;
+		}else{
+			ReactDOM.unmountComponentAtNode(destination);
+			return false;
+		}
 	},
 	componentWillUpdate:function(){
 		console.log( "6. componentWillUpdate" );
 		return;
 	},
 	componentDidUpdate:function(){
-		console.log( "7.componentDidUpdate" );
+		console.log( "7. componentDidUpdate" );
+		return;
+	},
+	componentWillUnmount:function(){
+		console.log( "8. componentWillUnmount" );
 		return;
 	},
 	increase: function(){
