@@ -7,3 +7,5 @@ componentWillUnmount
 componentDidUpdate
 shouldComponentUpdate
 componentWillReceivePro
+componentWillUpdate
+componentDidUpdate

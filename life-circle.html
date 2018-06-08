@@ -53,11 +53,19 @@ var CounterParent = React.createClass({
 		return;
 	},
 	shouldComponentUpdate:function(newProp, newState){
-		console.log("shouldComponentUpdate");
+		console.log("5. shouldComponentUpdate");
 		console.log( newProp );
 
 		// 小于5组件进行更新, 大于5组件不再更新视图
 		return newState.count < 5
+	},
+	componentWillUpdate:function(){
+		console.log( "6. componentWillUpdate" );
+		return;
+	},
+	componentDidUpdate:function(){
+		console.log( "7.componentDidUpdate" );
+		return;
 	},
 	increase: function(){
 		this.setState({
