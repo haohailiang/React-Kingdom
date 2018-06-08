@@ -1,10 +1,16 @@
-import React from 'react';
-import Header from './components/header';
+import React   from 'react';
+import Header  from './components/header';
+import Process from './components/process';
 
 let Root = React.createClass({
 	render(){
 		return (
-			<Header></Header>
+			<div>
+				<Header></Header>
+				<Process
+					process="1">
+				</Process>
+			</div>
 		)
 	}
 });
