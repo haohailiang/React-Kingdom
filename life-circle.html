@@ -54,6 +54,7 @@ var CounterParent = React.createClass({
 	},
 	shouldComponentUpdate:function(newProp, newState){
 		console.log("shouldComponentUpdate");
+		console.log( newProp );
 
 		// 小于5组件进行更新, 大于5组件不再更新视图
 		return newState.count < 5
@@ -93,7 +94,7 @@ var CounterParent = React.createClass({
 
 ReactDOM.render(
 	<div>
-		<CounterParent></CounterParent>
+		<CounterParent haha="work"></CounterParent>
 	</div>,
 	destination
 );
