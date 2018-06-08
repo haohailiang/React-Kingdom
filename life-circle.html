@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="renderer" content="webkit">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>React组件-生命周期</title>
+<link rel="stylesheet" href="css/index.css">
+</head>
+<body>
+<div id="container"></div>
+
+<script src="js/react-0.14.9.js"></script>
+<script src="js/react-dom-0.14.9.js"></script>
+<script src="js/browser-5.8.23.min.js"></script>
+
+<script type="text/babel">
+var destination = document.querySelector('#container');
+
+var Counter = React.createClass({
+	render:function(){
+		var tempStyle = {
+			fontSize   : 72,
+			color      : "#333",
+			fontWeight : "bold"
+		};
+		return (
+			<div style={ tempStyle }>
+			{ this.props.display }
+			</div>
+		);
+	}
+});
+
+var CounterParent = React.createClass({
+	getDefaultProps: function(){
+		console.log( "1. getDefaultProps" );
+		return {};
+	},
+
+	getInitialState:function(){
+		console.log( "2. getInitialState" );
+		return {
+			count:0
+		};
+	},
+	componentWillMount:function(){
+		console.log( "3. componentWillMount" );
+		return;
+	},
+	componentDidMount:function(){
+		console.log( "4. componentDidMount" );
+		return;
+	},
+	increase: function(){
+		this.setState({
+			count : this.state.count + 1
+		});
+	},
+	render:function(){
+		var tempStyle = {
+			padding:50,
+			border:"2px dotted #333",
+			width:250,
+			borderRadius:10,
+			textAlign:"center"
+		};
+		var linkStyle = {
+			fontSize        : 40,
+			color           : "#333",
+			padding         : "0 20px",
+			lineHeight      : "26px",
+			textDecoration  : "none",
+			border          : "1px solid #ccc",
+			borderRadius    : "4px",
+			backgroundColor : "#fff"
+		}
+
+		return (
+			<div style={ tempStyle }>
+				<Counter display={ this.state.count }></Counter>
+				<a href="javascript:;" style={ linkStyle } onClick={ this.increase }>+</a>
+			</div>
+		)
+	}
+});
+
+ReactDOM.render(
+	<div>
+		<CounterParent></CounterParent>
+	</div>,
+	destination
+);
+</script>
+</body>
+</html>
