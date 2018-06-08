@@ -52,6 +52,12 @@ var CounterParent = React.createClass({
 		console.log( "4. componentDidMount" );
 		return;
 	},
+	shouldComponentUpdate:function(newProp, newState){
+		console.log("shouldComponentUpdate");
+
+		// 小于5组件进行更新, 大于5组件不再更新视图
+		return newState.count < 5
+	},
 	increase: function(){
 		this.setState({
 			count : this.state.count + 1
