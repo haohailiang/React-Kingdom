@@ -18,6 +18,10 @@
 var destination = document.querySelector('#container');
 
 var Counter = React.createClass({
+	componentWillReceiveProps:function(){
+		console.log( "componentWillReceiveProps" );
+		return;
+	},
 	render:function(){
 		var tempStyle = {
 			fontSize   : 72,

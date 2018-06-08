@@ -6,6 +6,6 @@ componentDidMount
 componentWillUnmount
 componentDidUpdate
 shouldComponentUpdate
-componentWillReceivePro
+componentWillReceiveProps
 componentWillUpdate
 componentDidUpdate
