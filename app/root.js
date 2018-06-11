@@ -2,6 +2,8 @@ import React   from 'react';
 import Header  from './components/header';
 import Process from './components/progress';
 
+var duration;
+
 let Root = React.createClass({
 	getInitialState(){
 		return {
@@ -20,6 +22,7 @@ let Root = React.createClass({
 			useStateClassSkin: true
 		});
 		$("#player").bind($.jPlayer.event.timeupdate, (e) => {
+			duration = e.jPlayer.status.duration;
 			this.setState({
 				// progress: Math.round(e.jPlayer.status.currentTime)
 				progress: Math.round(e.jPlayer.status.currentPercentAbsolute)
@@ -30,7 +33,7 @@ let Root = React.createClass({
 		$("#player").unbind($.jPlayer.event.timeupdate);
 	},
 	progressChangeHandler(process){
-		console.log( `from root widget ${process}` );
+		$("#player").jPlayer('play', duration * process)
 	},
 	render(){
 		return (
