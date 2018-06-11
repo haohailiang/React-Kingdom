@@ -46,6 +46,17 @@ let Player = React.createClass({
 	progressChangeHandler(process){
 		$("#player").jPlayer('play', duration * process)
 	},
+    // 播放-暂停的转换
+	play(){
+		if(this.state.isPlay){
+			$("#player").jPlayer('pause');
+		}else{
+			$("#player").jPlayer('play');
+		}
+		this.setState({
+			isPlay:!this.state.isPlay
+		});
+	},
 	render(){
 		return (
 			<div>
@@ -77,7 +88,7 @@ let Player = React.createClass({
 							<div className="mt35 row">
 	                			<div>
 		                			<i className="icon prev"></i>
-		                			<i className={`icon ml20 play`}></i>
+		                			<i className={`icon ml20 ${this.state.isPlay? 'pause' : 'play'}`} onClick={ this.play }></i>
 		                			<i className="icon next ml20"></i>
 	                			</div>
 	                			<div className="-col-auto">
