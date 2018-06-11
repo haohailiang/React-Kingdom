@@ -16,3 +16,4 @@
 * componentWillReceiveProps
 * componentWillUpdate
 * componentDidUpdate
+235 播放下一个 路由刚写完

@@ -17,6 +17,7 @@ let App = React.createClass({
 			<div>
 				<Header></Header>
 				{ React.cloneElement(this.props.children, this.state) }
+				{/* { this.props.children } */}
 				<MusicList
 					currentMusicItem={ this.state.currentMusicItem }
 					musicList={ this.state.musicList }>
