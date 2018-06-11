@@ -62,16 +62,19 @@ let Player = React.createClass({
 								</Process> */}
 							</div>
 							<div className="mt35 row">
-                			<div>
-	                			<i className="icon prev"></i>
-	                			<i className={`icon ml20 play`}></i>
-	                			<i className="icon next ml20"></i>
-                			</div>
-                			<div className="-col-auto">
-                				<i className={`icon repeat-cycle`}></i>
-                			</div>
-                		</div>
+	                			<div>
+		                			<i className="icon prev"></i>
+		                			<i className={`icon ml20 play`}></i>
+		                			<i className="icon next ml20"></i>
+	                			</div>
+	                			<div className="-col-auto">
+	                				<i className={`icon repeat-cycle`}></i>
+	                			</div>
+	                		</div>
 						</div>
+						<div className="-col-auto cover">
+	                		歌曲名封面
+	                	</div>
 					</div>
 				</div>
 			</div>
