@@ -29,13 +29,17 @@ let Root = React.createClass({
 	componentWillUnmount(){
 		$("#player").unbind($.jPlayer.event.timeupdate);
 	},
+	progressChangeHandler(process){
+		console.log( `from root widget ${process}` );
+	},
 	render(){
 		return (
 			<div>
 				<div id="player"></div>
 				<Header></Header>
 				<Process
-					progress={ this.state.progress }>
+					progress={ this.state.progress }
+					onProgressChange={ this.progressChangeHandler }>
 				</Process>
 			</div>
 		)
