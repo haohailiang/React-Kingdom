@@ -42,7 +42,8 @@ let Root = React.createClass({
 				<Header></Header>
 				<Process
 					progress={ this.state.progress }
-					onProgressChange={ this.progressChangeHandler }>
+					onProgressChange={ this.progressChangeHandler }
+					barColor="#FF0000">
 				</Process>
 			</div>
 		)
