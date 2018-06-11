@@ -21,9 +21,13 @@ let Root = React.createClass({
 		});
 		$("#player").bind($.jPlayer.event.timeupdate, (e) => {
 			this.setState({
-				progress: Math.round(e.jPlayer.status.currentTime)
+				// progress: Math.round(e.jPlayer.status.currentTime)
+				progress: Math.round(e.jPlayer.status.currentPercentAbsolute)
 			});
 		});
+	},
+	componentWillUnmount(){
+		$("#player").unbind($.jPlayer.event.timeupdate);
 	},
 	render(){
 		return (
