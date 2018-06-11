@@ -42,8 +42,8 @@ let Player = React.createClass({
 	                <h1 className="caption">我的私人音乐坊 &gt;</h1>
 	                <div className="mt20 row">
 	                	<div className="controll-wrapper">
-	                		<h2 className="music-title">歌曲名称</h2>
-	                		<h3 className="music-artist mt10">歌手</h3>
+	                		<h2 className="music-title">{ this.props.currentMusicItem.title}</h2>
+	                		<h3 className="music-artist mt10">{ this.props.currentMusicItem.artist}</h3>
 	                		<div className="row mt20">
 	                			<div className="left-time -col-auto">-2:00</div>
 	                			<div className="volume-container">
@@ -54,12 +54,10 @@ let Player = React.createClass({
 								</div>
 							</div>
 							<div style={{height: 10, lineHeight: '10px'}}>
-								播放进度部分
-								{/* <Process
+								<Process
 									progress={ this.state.progress }
-									onProgressChange={ this.progressChangeHandler }
-									barColor="#FF0000">
-								</Process> */}
+									onProgressChange={ this.progressChangeHandler }>
+								</Process>
 							</div>
 							<div className="mt35 row">
 	                			<div>
@@ -73,7 +71,7 @@ let Player = React.createClass({
 	                		</div>
 						</div>
 						<div className="-col-auto cover">
-	                		歌曲名封面
+	                		<img src={this.props.currentMusicItem.cover} alt={this.props.currentMusicItem.title}/>
 	                	</div>
 					</div>
 				</div>
