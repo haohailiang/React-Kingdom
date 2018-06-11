@@ -7,7 +7,9 @@ var duration = null;
 let Player = React.createClass({
 	getInitialState(){
 		return {
-			progress: '-'
+			progress : 0,
+			volume   : 0,
+			isPlay   : true
 		}
 	},
 	componentDidMount(){
@@ -25,6 +27,7 @@ let Player = React.createClass({
 			duration = e.jPlayer.status.duration;
 			this.setState({
 				// progress: Math.round(e.jPlayer.status.currentTime)
+				volume : e.jPlayer.status.volume * 100,
 				progress: Math.round(e.jPlayer.status.currentPercentAbsolute)
 			});
 		});
@@ -32,6 +35,14 @@ let Player = React.createClass({
 	componentWillUnmount(){
 		$("#player").unbind($.jPlayer.event.timeupdate);
 	},
+    // 改变音量大小
+	changeVolumeHandler(process){
+		this.setState({
+			volume : process * 100
+		});
+		$("#player").jPlayer('volume', process)
+	},
+    // 改变播放进度
 	progressChangeHandler(process){
 		$("#player").jPlayer('play', duration * process)
 	},
@@ -49,7 +60,11 @@ let Player = React.createClass({
 	                			<div className="volume-container">
 	                				<i className="icon-volume rt" style={{top: 5, left: -5}}></i>
 	                				<div className="volume-wrapper">
-										音量控制部分
+										<Process
+											progress={ this.state.volume }
+											onProgressChange={ this.changeVolumeHandler }
+											barColor="#aaa">
+										</Process>
 									</div>
 								</div>
 							</div>
