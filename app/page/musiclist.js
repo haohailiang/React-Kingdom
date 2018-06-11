@@ -1,11 +1,17 @@
-import React from 'react';
+import React         from 'react';
+import MusicListItem from '../components/musiclistitem';
 
 let MusicList = React.createClass({
 	render(){
 		let listEle = null;
 		listEle = this.props.musicList.map(item => {
 			return (
-				<li key={ item.id }>{ item.title }</li>
+				<MusicListItem
+					key={ item.id }
+					musicItem = { item }
+					>
+						{ item.title }
+				</MusicListItem>
 			)
 		});
 
