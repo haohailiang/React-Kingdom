@@ -12,6 +12,37 @@ let App = React.createClass({
 			currentMusicItem : MUSIC_LIST[0]
 		};
 	},
+	componentDidMount() {
+		PubSub.subscribe('PLAY_NEXT', () => {
+			this.playNext();
+		});
+		PubSub.subscribe('PLAY_PREV', () => {
+			this.playNext('prev');
+		});
+	},
+	playMusic(musicItem){
+		$('#player').jPlayer("setMedia", {
+			mp3: musicItem.file
+		}).jPlayer('play');
+	},
+	playNext(type="next"){
+		let index = this.findMusicIndex(this.state.currentMusicItem);
+		let newIndex = null;
+		let musicLength = this.state.musicList.length
+		if(type === "next"){
+			newIndex = (index + 1) % musicLength;
+		}else{
+			newIndex = (index - 1 + musicLength) % musicLength;
+		}
+		let musicItem = this.state.musicList[newIndex];
+		this.setState({
+			currentMusicItem: musicItem
+		});
+		this.playMusic(musicItem);
+	},
+	findMusicIndex(musicItem){
+		return this.state.musicList.indexOf(musicItem);
+	},
 	render(){
 		return (
 			<div>

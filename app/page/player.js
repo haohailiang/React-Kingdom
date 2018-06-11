@@ -1,4 +1,5 @@
 import React   from 'react';
+import Pubsub   from 'pubsub-js';
 import Process from './../components/progress';
 import './player.less';
 
@@ -34,6 +35,12 @@ let Player = React.createClass({
 	},
 	componentWillUnmount(){
 		$("#player").unbind($.jPlayer.event.timeupdate);
+	},
+	playNext() {
+		PubSub.publish('PLAY_NEXT');
+	},
+	playPrev() {
+		PubSub.publish('PLAY_PREV');
 	},
     // 改变音量大小
 	changeVolumeHandler(process){
@@ -87,9 +94,9 @@ let Player = React.createClass({
 							</div>
 							<div className="mt35 row">
 	                			<div>
-		                			<i className="icon prev"></i>
+		                			<i className="icon prev" onClick={ this.playPrev }></i>
 		                			<i className={`icon ml20 ${this.state.isPlay? 'pause' : 'play'}`} onClick={ this.play }></i>
-		                			<i className="icon next ml20"></i>
+		                			<i className="icon next ml20" onClick={ this.playNext }></i>
 	                			</div>
 	                			<div className="-col-auto">
 	                				<i className={`icon repeat-cycle`}></i>
