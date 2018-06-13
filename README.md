@@ -16,4 +16,11 @@
 * componentWillReceiveProps
 * componentWillUpdate
 * componentDidUpdate
-235 播放下一个 路由刚写完
+
+TODO:
+我的私人音乐坊点击
+头部样式调整
+点击列表播放[选择播放]
+事件订阅类似于冒泡
+点击删除
+其他功能完善

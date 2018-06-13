@@ -1,6 +1,7 @@
-import React   from 'react';
+import React    from 'react';
 import Pubsub   from 'pubsub-js';
-import Process from './../components/progress';
+import Process  from './../components/progress';
+import { Link } from 'react-router';
 import './player.less';
 
 var duration = null;
@@ -68,7 +69,7 @@ let Player = React.createClass({
 		return (
 			<div>
 				<div className="player-page">
-	                <h1 className="caption">我的私人音乐坊 &gt;</h1>
+	                <h1 className="caption"><Link to="/list">我的私人音乐坊 &gt;</Link></h1>
 	                <div className="mt20 row">
 	                	<div className="controll-wrapper">
 	                		<h2 className="music-title">{ this.props.currentMusicItem.title}</h2>

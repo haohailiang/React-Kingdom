@@ -49,10 +49,10 @@ let App = React.createClass({
 				<Header></Header>
 				{ React.cloneElement(this.props.children, this.state) }
 				{/* { this.props.children } */}
-				<MusicList
+				{/* <MusicList
 					currentMusicItem={ this.state.currentMusicItem }
 					musicList={ this.state.musicList }>
-				</MusicList>
+				</MusicList> */}
 			</div>
 		)
 	}
