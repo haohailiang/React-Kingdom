@@ -13,6 +13,13 @@ let App = React.createClass({
 		};
 	},
 	componentDidMount() {
+		$("#player").jPlayer({
+			supplied          : "mp3",
+			wmode             : "window",
+			useStateClassSkin : true
+		});
+		this.playMusic(this.state.currentMusicItem);
+
 		PubSub.subscribe('PLAY_NEXT', () => {
 			this.playNext();
 		});
