@@ -3,13 +3,15 @@ import { Router, IndexRoute, Link, Route, browserHistory, hashHistory} from 'rea
 import Header                                                          from './components/header';
 import Player                                                          from './page/player';
 import MusicList                                                       from './page/musiclist';
+import { randomRange }                                                 from './utils/util';
 import { MUSIC_LIST }                                                  from './config/musiclist';
 
 let App = React.createClass({
 	getInitialState(){
 		return {
 			musicList        : MUSIC_LIST,
-			currentMusicItem : MUSIC_LIST[0]
+			currentMusicItem : MUSIC_LIST[0],
+			repeatType       : 'cycle'
 		};
 	},
 	componentDidMount() {
@@ -18,7 +20,12 @@ let App = React.createClass({
 			wmode             : "window",
 			useStateClassSkin : true
 		});
+		console.log( this.state.currentMusicItem );
 		this.playMusic(this.state.currentMusicItem);
+
+		$("#player").bind($.jPlayer.event.ended, (e) => {
+			this.playWhenEnd();
+		});
 
 		PubSub.subscribe('PLAY_NEXT', () => {
 			this.playNext();
@@ -29,7 +36,6 @@ let App = React.createClass({
         // msg 操作名称 PLAY_MUSIC
         // item 操作的节点
 		PubSub.subscribe('PLAY_MUSIC', (msg, item) => {
-			console.log( msg );
 			this.playMusic(item);
 		});
 		PubSub.subscribe('DEL_MUSIC', (msg, item) => {
@@ -39,6 +45,39 @@ let App = React.createClass({
 				})
 			});
 		});
+		let repeatList = [
+			'cycle',
+			'once',
+			'random'
+		];
+		PubSub.subscribe('CHANAGE_REPEAT', () => {
+			let index = repeatList.indexOf(this.state.repeatType);
+			index = (index + 1) % repeatList.length;
+			this.setState({
+				repeatType: repeatList[index]
+			});
+		});
+	},
+	componentWillUnmount() {
+		PubSub.unsubscribe('PLAY_MUSIC');
+		PubSub.unsubscribe('DEL_MUSIC');
+		PubSub.unsubscribe('CHANAGE_REPEAT');
+		PubSub.unsubscribe('PLAY_NEXT');
+		PubSub.unsubscribe('PLAY_PREV');
+	},
+	playWhenEnd() {
+		if (this.state.repeatType === 'random') {
+			let index = this.findMusicIndex(this.state.currentMusitItem);
+			let randomIndex = randomRange(0, this.state.musicList.length - 1);
+			while(randomIndex === index) {
+				randomIndex = randomRange(0, this.state.musicList.length - 1);
+			}
+			this.playMusic(this.state.musicList[randomIndex]);
+		} else if (this.state.repeatType === 'once') {
+			this.playMusic(this.state.currentMusitItem);
+		} else {
+			this.playNext();
+		}
 	},
 	playMusic(musicItem){
 		$('#player').jPlayer("setMedia", {
