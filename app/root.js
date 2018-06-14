@@ -19,7 +19,10 @@ let App = React.createClass({
 		PubSub.subscribe('PLAY_PREV', () => {
 			this.playNext('prev');
 		});
+        // msg 操作名称 PLAY_MUSIC
+        // item 操作的节点
 		PubSub.subscribe('PLAY_MUSIC', (msg, item) => {
+			console.log( msg );
 			this.playMusic(item);
 		});
 		PubSub.subscribe('DEL_MUSIC', (msg, item) => {
@@ -34,6 +37,10 @@ let App = React.createClass({
 		$('#player').jPlayer("setMedia", {
 			mp3: musicItem.file
 		}).jPlayer('play');
+
+		this.setState({
+			currentMusicItem: musicItem
+		});
 	},
 	playNext(type="next"){
 		let index = this.findMusicIndex(this.state.currentMusicItem);
