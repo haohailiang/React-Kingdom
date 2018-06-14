@@ -19,6 +19,16 @@ let App = React.createClass({
 		PubSub.subscribe('PLAY_PREV', () => {
 			this.playNext('prev');
 		});
+		PubSub.subscribe('PLAY_MUSIC', (msg, item) => {
+			this.playMusic(item);
+		});
+		PubSub.subscribe('DEL_MUSIC', (msg, item) => {
+			this.setState({
+				musicList: this.state.musicList.filter((music) => {
+					return music !== item;
+				})
+			});
+		});
 	},
 	playMusic(musicItem){
 		$('#player').jPlayer("setMedia", {
