@@ -4,3 +4,25 @@
 	padding: 50px;
 	background-color: #FFF;
 }
+
+.colorArea {
+	padding: 10px;
+	font-size: 16px;
+	border: 2px solid #ccc;
+}
+
+.colorArea button {
+	padding: 10px;
+	font-size: 16px;
+	margin: 10px;
+	background-color: #666;
+	color: #FFF;
+	cursor: pointer;
+}
+
+.colorSquare {
+	box-shadow: 0 0 25px 0 #333;
+	width: 242px;
+	height: 242px;
+	margin-bottom: 15px;
+}
