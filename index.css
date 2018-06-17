@@ -1,0 +1,9 @@
+body{
+	background-color : #FFCC00;
+	padding          : 0;
+	margin           : 0;
+}
+
+.active {
+	color: green;
+}

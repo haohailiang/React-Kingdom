@@ -4,9 +4,11 @@
 <meta charset="UTF-8">
 <meta name="renderer" content="webkit">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-<title>React知识点综合运用实例</title>
-<script src="js/react-0.14.9.js" charset="utf-8"></script>
-<script src="js/react-dom-0.14.9.js" charset="utf-8"></script>
+<title>
+</title>
+<script src="js/react-15.0.2.min.js" charset="utf-8"></script>
+<script src="js/react-dom-15.0.2.min.js" charset="utf-8"></script>
+<script src="js/react-router-0.9.5.js"></script>
 <script src="js/browser-5.8.23.min.js" charset="utf-8"></script>
 </head>
 <body>
@@ -14,9 +16,42 @@
 
 <script type="text/babel">
 var destination = document.querySelector('#container');
+
+var Home = React.createClass({
+	render: function(){
+		return (
+			<div>
+				<h2>望天门山</h2>
+				<p>天门中断楚江开，碧水东流至此回。</p>
+				<p>两岸青山相对出，孤帆一片日边来。</p>
+			</div>
+		);
+	}
+});
+
+var App = React.createClass({
+	render: function(){
+		return (
+			<div>
+				<h1>Simple SPA</h1>
+				<ul className="header">
+					<li>李白</li>
+					<li>杜甫</li>
+					<li>李商隐</li>
+				</ul>
+				<div className="content">
+					<Home></Home>
+				</div>
+			</div>
+		);
+	}
+});
 ReactDOM.render(
-	<div>Hello, World !</div>,
-	destination
+	<ReactRouter.Router history={ ReactRouter.hashHistory }>
+		<ReactRouter.Route path="/" component={ App }>
+		</ReactRouter.Route>
+	</ReactRouter.Router>
+	, destination
 );
 </script>
 </body>
