@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="renderer" content="webkit">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>React知识点综合运用实例</title>
+<script src="js/react-0.14.9.js" charset="utf-8"></script>
+<script src="js/react-dom-0.14.9.js" charset="utf-8"></script>
+<script src="js/browser-5.8.23.min.js" charset="utf-8"></script>
+</head>
+<body>
+<div id="container"></div>
+
+<script type="text/babel">
+var destination = document.querySelector('#container');
+ReactDOM.render(
+	<div>Hello, World !</div>,
+	destination
+);
+</script>
+</body>
+</html>
