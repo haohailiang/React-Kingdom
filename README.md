@@ -62,7 +62,8 @@ const todo = (state, action) => {
 | 读取数据            | 从Redux获取state             | 从props获取数据      |
 | 修改数据            | 向Redux派发actions           | 从props调用回调函数  |
 | 实现方式            | 由react-redux生成            | 手写                 |
-
+## redux相关的30个小视频
+http://cn.redux.js.org/
 
 
 
